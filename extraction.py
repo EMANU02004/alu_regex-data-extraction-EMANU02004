@@ -20,7 +20,12 @@ def load_data(filename="data.txt"):
         return []
     with open(filename, "r") as file:
         return [line.strip() for line in file.readlines()]
-                
+    
+# Extracting data based on category
+def load_data(filename="data.txt"):
+    pattern = re.compile(patterns[category])
+    return [item for item in data_list if paern.match(item)]
+                       
 # CLI System
 def main():
     data_list = load_data("data.txt")
@@ -40,3 +45,22 @@ def main():
             print("Invalid input, enter a number!")
             continue 
         
+if 1 <= choice <= len(patterns):
+    category = list(patterns.keys())[choice-1]
+    results = extract_category(category, data_list)
+    
+    print(f"\n Valid {category} entries found in file:")
+    if results:
+        for r in results:
+            print(f" {r}")
+            
+        else:
+            print("No valid entries found.")
+    elif choice == len(patterns)+1:
+        print("Existing system ....")
+        break
+    else:
+        print("Invalid choice, try again.")
+        
+        if __name__ == "__main__":
+            main()
