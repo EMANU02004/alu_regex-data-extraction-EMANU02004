@@ -22,9 +22,9 @@ def load_data(filename="data.txt"):
         return [line.strip() for line in file.readlines()]
     
 # Extracting data based on category
-def load_data(filename="data.txt"):
+def extract_category(category, data_list):
     pattern = re.compile(patterns[category])
-    return [item for item in data_list if paern.match(item)]
+    return [item for item in data_list if pattern.match(item)]
                        
 # CLI System
 def main():
@@ -45,22 +45,21 @@ def main():
             print("Invalid input, enter a number!")
             continue 
         
-if 1 <= choice <= len(patterns):
-    category = list(patterns.keys())[choice-1]
-    results = extract_category(category, data_list)
-    
-    print(f"\n Valid {category} entries found in file:")
-    if results:
-        for r in results:
-            print(f" {r}")
+        if 1 <= choice <= len(patterns):
+            category = list(patterns.keys())[choice-1]
+            results = extract_category(category, data_list)
             
+            print(f"\n Valid {category} entries found in file:")
+            if results:
+                for r in results:
+                    print(f" {r}")
+            else:
+                print("No valid entries found.")
+        elif choice == len(patterns)+1:
+            print("Existing system ....")
+            break
         else:
-            print("No valid entries found.")
-    elif choice == len(patterns)+1:
-        print("Existing system ....")
-        break
-    else:
-        print("Invalid choice, try again.")
-        
-        if __name__ == "__main__":
-            main()
+            print("Invalid choice, try again.")
+
+if __name__ == "__main__":
+    main()
